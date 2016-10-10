@@ -1,0 +1,56 @@
+#pragma once
+#include <boost/bind.hpp>
+#include <boost/asio.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/function.hpp>
+#include <boost/smart_ptr/detail/spinlock.hpp>
+#include <boost/thread/locks.hpp>  
+#include <boost/thread.hpp>  
+#include <boost/thread/recursive_mutex.hpp>  
+#include <boost/thread/condition.hpp>
+#include <boost/thread/mutex.hpp>  
+#include <boost/python.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/thread/condition_variable.hpp>  
+#include <vector>
+#include <map>
+#include <iostream>
+#include <mutex>
+#include <time.h>
+#include <fstream>
+#include <time.h>
+#include <string>
+#include <sstream>
+#include <queue>
+#include "MessageBuffer.h"
+#include "ConfigMgr.h"
+
+using std::stringstream;
+using boost::asio::ip::tcp;
+using std::pair;
+using std::queue;
+using std::map;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::cin;
+using std::string;
+using boost::shared_ptr;
+using std::ios;
+
+//单例调用宏
+#define GET_INSTANCE(CLASS) \
+CLASS::Instance()
+
+//单例定义宏
+#define SINGLE_INSTANCE(CLASS) \
+static CLASS* Instance() { static CLASS instance; return &instance; }
+
+//连接池回调消息
+#define CONNECT_CLOSE 1
+
+//日志类型宏
+#define LOG_NOTE 1
+#define LOG_WARNING 2
+#define LOG_ERROR 3

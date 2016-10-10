@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{990ce84d-62f8-480c-b9a4-f89ef30f923a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public">
+      <UniqueIdentifier>{faf74d92-01f5-4001-9366-75f3420eb1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{fd178319-3bba-453a-8e9a-1ff50fe5d86e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\Log">
+      <UniqueIdentifier>{d79c0990-303e-4a4c-92cf-353bc6bc2981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\MessageBuffer">
+      <UniqueIdentifier>{98c0c79b-478b-48b9-bd4d-3fb246d65322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\Lock">
+      <UniqueIdentifier>{86714f39-c8c9-4e04-8342-edb57aa55d63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\Timer">
+      <UniqueIdentifier>{6bf6798c-bbe2-46fc-99b9-f751bb5ef3e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\NetWork">
+      <UniqueIdentifier>{7fb2c8eb-de0e-48a1-95b9-da45b81c74c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\NetWork\NetWorkMgr">
+      <UniqueIdentifier>{c5cc8580-18cf-44c0-9907-d059adf68dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\NetWork\AsyncListen">
+      <UniqueIdentifier>{35bba1db-3e86-42c4-b3a0-610da90afbeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\NetWork\AsyncConnect">
+      <UniqueIdentifier>{3be75ded-cc6b-4ba2-b06f-96d5a8a7dc62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\Config">
+      <UniqueIdentifier>{51053f48-9c1e-48cf-909b-acba68cd8981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Task">
+      <UniqueIdentifier>{3f268810-67d1-48fd-8f10-1bbf534e3679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Task\TaskQueue">
+      <UniqueIdentifier>{2d625e8f-9c5c-4945-b4f7-2d69efa127a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lib-lua">
+      <UniqueIdentifier>{d7eee39f-a924-4586-975f-cb8adb8cc8b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lib-python">
+      <UniqueIdentifier>{c7aa5140-99a3-4da5-a694-c90217cb1db4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NetWorkMgr.cpp">
+      <Filter>Engine\NetWork\NetWorkMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigMgr.cpp">
+      <Filter>Engine\Public\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="AsyncSession.cpp">
+      <Filter>Engine\NetWork\AsyncListen</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskQueue.cpp">
+      <Filter>Engine\Task\TaskQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-global.cpp">
+      <Filter>Engine\Lib-lua</Filter>
+    </ClCompile>
+    <ClCompile Include="PythonEngine.cpp">
+      <Filter>Engine\Lib-python</Filter>
+    </ClCompile>
+    <ClCompile Include="AsyncConnect.cpp">
+      <Filter>Engine\NetWork\AsyncConnect</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NetWorkMgr.h">
+      <Filter>Engine\NetWork\NetWorkMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="AsyncListen.h">
+      <Filter>Engine\NetWork\AsyncListen</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectPool.h">
+      <Filter>Engine\NetWork\AsyncListen</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>Engine\Public\Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBuffer.h">
+      <Filter>Engine\Public\MessageBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigMgr.h">
+      <Filter>Engine\Public\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Engine\Public\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="AsyncSession.h">
+      <Filter>Engine\NetWork\AsyncListen</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskQueue.h">
+      <Filter>Engine\Task\TaskQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="Public.h">
+      <Filter>Engine\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-global.h">
+      <Filter>Engine\Lib-lua</Filter>
+    </ClInclude>
+    <ClInclude Include="PythonEngine.h">
+      <Filter>Engine\Lib-python</Filter>
+    </ClInclude>
+    <ClInclude Include="AsyncConnect.h">
+      <Filter>Engine\NetWork\AsyncConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Engine\Public\Timer</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
