@@ -34,6 +34,7 @@
 1.由一个线程专门网络报文的发送与接收,由C++打包成动态库实现
 
 2.由一个线程从网络任务队列中读取任务并分配工作线程处理,由Python实现
+(python入口https://github.com/tockjyy/ServiceEngine/blob/master/Release/Main.py)
 
 3.建立可配置数量的工作线程处理网络任务,由Python实现
 
