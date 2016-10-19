@@ -127,7 +127,7 @@ bool cpp_timer.NewOnceTimer(func,index,ms)
 返回值: 是否成功
 
 ### 3. 3.定时回调函数
-bool func(index)
+bool func(index)(名称必须注册时的名称相同)
 
 参数: index:一般用于识别激发这个定时器的角色
 
