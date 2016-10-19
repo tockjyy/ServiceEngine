@@ -85,7 +85,6 @@ void AsyncConnect::Read_Handle(boost::system::error_code error, size_t bytes_tra
 	if (error)
 	{
 		SPIN_LOCK();
-		cout << "read" << endl;
 		if (!is_reconnect_)
 		{
 			is_reconnect_ = true;
@@ -115,7 +114,6 @@ void AsyncConnect::Write_Handle(boost::system::error_code error, size_t bytes_tr
 	if (error)
 	{
 		SPIN_LOCK();
-		cout << "write" << endl;
 		if (!is_reconnect_)
 		{
 			is_reconnect_ = true;

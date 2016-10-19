@@ -5,14 +5,15 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/function.hpp>
 #include <boost/smart_ptr/detail/spinlock.hpp>
+#include <boost/uuid/sha1.hpp>
 #include <boost/thread/locks.hpp>  
 #include <boost/thread.hpp>  
 #include <boost/thread/recursive_mutex.hpp>  
 #include <boost/thread/condition.hpp>
 #include <boost/thread/mutex.hpp>  
-#include <boost/python.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/condition_variable.hpp>  
+#include <boost/thread/tss.hpp>
 #include <vector>
 #include <map>
 #include <iostream>
@@ -23,6 +24,10 @@
 #include <string>
 #include <sstream>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <tuple>
+#include <stack>
 #include "MessageBuffer.h"
 #include "ConfigMgr.h"
 
@@ -36,7 +41,12 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
+using std::tuple;
+using std::make_tuple;
 using boost::shared_ptr;
+using std::unordered_map;
+using std::unordered_set;
+using std::stack;
 using std::ios;
 
 //µ¥Àýµ÷ÓÃºê

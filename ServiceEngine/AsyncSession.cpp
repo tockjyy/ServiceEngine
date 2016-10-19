@@ -20,9 +20,12 @@ AsyncSession::AsyncSession(boost::asio::io_service* _io_service, uint32_t id, th
 void AsyncSession::BeginHander()
 {
 	is_destory_ = false;
+	die_time_ = time(NULL);
 }
 void AsyncSession::ConnectInit(boost::system::error_code error)
 {
+	READ_LOCK();
+	if (!socket_.is_open())return;
 	rdata_.Reset();
 	wdata_.Reset();
 	BeginHander();
@@ -47,9 +50,11 @@ void AsyncSession::Read_Wait(boost::system::error_code error)
 void AsyncSession::Read_Handle(boost::system::error_code error,
 	size_t bytes_transferred)
 {
+	READ_LOCK();
+	if (!socket_.is_open())return;
 	if (error || bytes_transferred == 0)
 	{
-		ConnectDestroy();
+		//ConnectDestroy();
 	}
 	else
 	{
@@ -71,12 +76,15 @@ void AsyncSession::Write_Wait()
 void AsyncSession::Write_Handle(boost::system::error_code error,
 	size_t bytes_transferred)
 {
+	READ_LOCK();
+	if (!socket_.is_open())return;
 	if (error || bytes_transferred == 0)
 	{
-		ConnectDestroy();
+		//ConnectDestroy();
 	}
 	else
 	{
+		die_time_ = time(NULL);
 		wdata_.ReadCompleted(bytes_transferred);
 		wdata_.Normalize();
 		wdata_.EnsureFreeSpace();
@@ -93,7 +101,8 @@ bool AsyncSession::LoseBufCheck(const uint16_t& size)
 //将报文写入发送缓存
 void AsyncSession::WriteBuffer(MessageBuffer& buf)
 {
-	SPIN_LOCK();
+	READ_LOCK();
+	if (!socket_.is_open())return;
 	uint16_t size = buf.GetActiveSize();
 	if (size == 0)return;
 	wdata_.Write((void*)&size, 2);
@@ -103,7 +112,8 @@ void AsyncSession::WriteBuffer(MessageBuffer& buf)
 //将报文写入发送缓存
 void AsyncSession::WriteBuffer(const string& buf)
 {
-	SPIN_LOCK();
+	READ_LOCK();
+	if (!socket_.is_open())return;
 	uint16_t size = buf.size();
 	if (size == 0)return;
 	wdata_.Write((void*)&size, 2);
@@ -122,13 +132,13 @@ bool AsyncSession::CanSend()
 //毁灭连接
 void AsyncSession::ConnectDestroy()
 {
-	SPIN_LOCK();
-	if (is_destory_)return;
+	WRITE_LOCK();
+	//if (is_destory_)return;
 	if (!socket_.is_open())return;
 	socket_.shutdown(tcp::socket::shutdown_both);
 	socket_.close();
 	is_write = false;
-	is_destory_ = !PoolCallBack_(pool_, CONNECT_CLOSE, connectid_);
+	PoolCallBack_(pool_, CONNECT_CLOSE, connectid_);
 	return;
 }
 //接收报文处理方法
@@ -142,4 +152,21 @@ bool AsyncSession::ProtocolHeadHandle()
 	GET_INSTANCE(TaskQueue)->CreateNewRecvTask(rdata_.GetReadPointer()+2,data_size, false, name_, connectid_);
 	rdata_.ReadCompleted(data_size + 2);
 	return true;
+}
+
+//清理连接
+void AsyncSession::ClearConnect(const uint32_t& sec, const time_t& time)
+{
+	auto between = time - die_time_;
+	if (between > sec)
+	{
+		ConnectDestroy();
+	}
+}
+
+string AsyncSession::GetRemoveIp()
+{
+	if (!socket_.is_open())return "";
+	string ip = socket_.remote_endpoint().address().to_string();
+	return move(ip);
 }

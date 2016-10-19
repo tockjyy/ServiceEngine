@@ -1,4 +1,0 @@
-print("student open sucess")
-
-
-

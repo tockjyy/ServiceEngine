@@ -9,10 +9,10 @@ public:
 	typedef boost::shared_ptr<tcp::socket> sock_ptr;
 
 	virtual ~AsyncListen() {}
-	AsyncListen(boost::asio::io_service * io, uint16_t port, string name)
+	AsyncListen(boost::asio::io_service * io, uint16_t port, string name, long ms)
 		: acceptor_(*io, tcp::endpoint(tcp::v4(), port))
 		, pio_(io)
-		, ConnectPool(io,name)
+		, ConnectPool(io,name,ms)
 	{
 		Start_Accept();
 	}

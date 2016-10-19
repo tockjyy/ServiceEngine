@@ -3,7 +3,7 @@
 #include "Lock.h"
 #include "ConnectPool.h"
 
-class AsyncSession : public SpinLock
+class AsyncSession : public WR_Lock
 {
 public:
 	typedef AsyncSession this_type;
@@ -33,7 +33,10 @@ public:
 	void ConnectDestroy();
 	//接收报文处理方法
 	bool ProtocolHeadHandle();
-
+	//清理连接
+	void ClearConnect(const uint32_t& sec,const time_t& time);
+	//获得远端ip
+	string GetRemoveIp();
 	tcp::socket socket_;//套接字
 	uint32_t connectid_;//线程池分配的连接ID
 protected:
@@ -43,4 +46,5 @@ protected:
 	MessageBuffer wdata_;//发送缓存
 	bool is_write, is_destory_;//共享变量 充当部分锁的作用
 	string name_;
+	time_t die_time_;
 };

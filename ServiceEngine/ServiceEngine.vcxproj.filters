@@ -28,9 +28,6 @@
     <Filter Include="Engine\NetWork\NetWorkMgr">
       <UniqueIdentifier>{c5cc8580-18cf-44c0-9907-d059adf68dea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\NetWork\AsyncListen">
-      <UniqueIdentifier>{35bba1db-3e86-42c4-b3a0-610da90afbeb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\NetWork\AsyncConnect">
       <UniqueIdentifier>{3be75ded-cc6b-4ba2-b06f-96d5a8a7dc62}</UniqueIdentifier>
     </Filter>
@@ -46,8 +43,23 @@
     <Filter Include="Engine\Lib-lua">
       <UniqueIdentifier>{d7eee39f-a924-4586-975f-cb8adb8cc8b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Lib-python">
-      <UniqueIdentifier>{c7aa5140-99a3-4da5-a694-c90217cb1db4}</UniqueIdentifier>
+    <Filter Include="Engine\Lib-lua\Global">
+      <UniqueIdentifier>{cbf0a383-661a-462d-b96c-7a5d294ee708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lib-lua\Lock">
+      <UniqueIdentifier>{3d33229a-26dd-4f18-baf2-b12afc27cd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lib-lua\Timer">
+      <UniqueIdentifier>{2b35c5b6-540d-4007-b890-ad81e7aee3e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lib-lua\ProtoBuf">
+      <UniqueIdentifier>{f25a507a-0b74-40d5-ab12-6d730b130e19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Public\Cipher">
+      <UniqueIdentifier>{8863ce75-f7e4-435f-b765-d09cbd7a95c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\NetWork\TcpAsyncListen">
+      <UniqueIdentifier>{35bba1db-3e86-42c4-b3a0-610da90afbeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +70,7 @@
       <Filter>Engine\Public\Config</Filter>
     </ClCompile>
     <ClCompile Include="AsyncSession.cpp">
-      <Filter>Engine\NetWork\AsyncListen</Filter>
+      <Filter>Engine\NetWork\TcpAsyncListen</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Test</Filter>
@@ -66,14 +78,23 @@
     <ClCompile Include="TaskQueue.cpp">
       <Filter>Engine\Task\TaskQueue</Filter>
     </ClCompile>
-    <ClCompile Include="lua-global.cpp">
-      <Filter>Engine\Lib-lua</Filter>
-    </ClCompile>
-    <ClCompile Include="PythonEngine.cpp">
-      <Filter>Engine\Lib-python</Filter>
-    </ClCompile>
     <ClCompile Include="AsyncConnect.cpp">
       <Filter>Engine\NetWork\AsyncConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-global.cpp">
+      <Filter>Engine\Lib-lua\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-lock.cpp">
+      <Filter>Engine\Lib-lua\Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="lua-timer.cpp">
+      <Filter>Engine\Lib-lua\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="pbc.cpp">
+      <Filter>Engine\Lib-lua\ProtoBuf</Filter>
+    </ClCompile>
+    <ClCompile Include="Cipher.cpp">
+      <Filter>Engine\Public\Cipher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,10 +102,10 @@
       <Filter>Engine\NetWork\NetWorkMgr</Filter>
     </ClInclude>
     <ClInclude Include="AsyncListen.h">
-      <Filter>Engine\NetWork\AsyncListen</Filter>
+      <Filter>Engine\NetWork\TcpAsyncListen</Filter>
     </ClInclude>
     <ClInclude Include="ConnectPool.h">
-      <Filter>Engine\NetWork\AsyncListen</Filter>
+      <Filter>Engine\NetWork\TcpAsyncListen</Filter>
     </ClInclude>
     <ClInclude Include="Lock.h">
       <Filter>Engine\Public\Lock</Filter>
@@ -99,7 +120,7 @@
       <Filter>Engine\Public\Log</Filter>
     </ClInclude>
     <ClInclude Include="AsyncSession.h">
-      <Filter>Engine\NetWork\AsyncListen</Filter>
+      <Filter>Engine\NetWork\TcpAsyncListen</Filter>
     </ClInclude>
     <ClInclude Include="TaskQueue.h">
       <Filter>Engine\Task\TaskQueue</Filter>
@@ -107,17 +128,26 @@
     <ClInclude Include="Public.h">
       <Filter>Engine\Public</Filter>
     </ClInclude>
-    <ClInclude Include="lua-global.h">
-      <Filter>Engine\Lib-lua</Filter>
-    </ClInclude>
-    <ClInclude Include="PythonEngine.h">
-      <Filter>Engine\Lib-python</Filter>
-    </ClInclude>
     <ClInclude Include="AsyncConnect.h">
       <Filter>Engine\NetWork\AsyncConnect</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Engine\Public\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-global.h">
+      <Filter>Engine\Lib-lua\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-lock.h">
+      <Filter>Engine\Lib-lua\Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="lua-timer.h">
+      <Filter>Engine\Lib-lua\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="pbc.h">
+      <Filter>Engine\Lib-lua\ProtoBuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Cipher.h">
+      <Filter>Engine\Public\Cipher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

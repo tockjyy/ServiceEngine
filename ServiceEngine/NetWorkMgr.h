@@ -15,7 +15,10 @@ public:
 	virtual ~NetWorkMgr();
 
 	//加载一个新的异步监听
-	bool NewAsyncListen(string name, uint16_t port);
+	bool NewAsyncListen(string name, uint16_t port, long ms);
+
+	//获取一个连接的远端IP地址
+	string GetRemoveIp(string name, uint32_t conid);
 
 	//加载一个新的异步连接
 	bool NewAsyncConnect(string name, uint16_t port, string ip);

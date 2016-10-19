@@ -9,7 +9,7 @@
 class SpinLock
 {
 public:
-	typedef std::lock_guard<boost::detail::spinlock>	spinLock;
+	typedef boost::lock_guard<boost::detail::spinlock>	spinLock;
 public:
 	boost::detail::spinlock lock;
 };
@@ -21,6 +21,6 @@ public:
 	typedef boost::shared_mutex            WR_Mutex;
 	typedef boost::unique_lock<WR_Mutex>   writeLock;
 	typedef boost::shared_lock<WR_Mutex>   readLock;
-protected:
+public:
 	WR_Mutex        m_rwMutex;
 };

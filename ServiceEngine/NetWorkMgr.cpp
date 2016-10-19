@@ -11,10 +11,18 @@ NetWorkMgr::~NetWorkMgr()
 {
 }
 
-bool NetWorkMgr::NewAsyncListen(string name, uint16_t port)
+//获取一个连接的远端IP地址
+string NetWorkMgr::GetRemoveIp(string name, uint32_t conid)
+{
+	auto itr = listen_list_.find(name);
+	if (itr == listen_list_.end())return "";
+	return itr->second->GetRemoveIp(conid);
+}
+
+bool NetWorkMgr::NewAsyncListen(string name, uint16_t port, long ms)
 {
 	if (listen_list_.find(name) != listen_list_.end())return false;
-	boost::shared_ptr<AsyncListen> _listen(new AsyncListen(&io_service_, port, name));
+	boost::shared_ptr<AsyncListen> _listen(new AsyncListen(&io_service_, port, name, ms));
 	listen_list_.insert(pair<string, boost::shared_ptr<AsyncListen>>(name,_listen));
 	return true;
 }
