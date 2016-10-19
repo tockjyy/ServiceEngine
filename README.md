@@ -1,6 +1,7 @@
 # ServiceEngine
 ## 一.架构设想
 ### 理论上可作为任何Cpu密集型服务器的底层框架,网络底层由C++编写开发时可不变,服务器逻辑全部由Lua编写,节约开发成本与维护难度因考虑linux服务器,库选型都是跨平台的库,所以只上传了VS2015的工程,以方便编码调试,makefile未编写
+### [关于产品选型的l考虑](https://github.com/tockjyy/ServiceEngine/wiki/关于分布式联机游戏匹配系统实现的架构设想)
 ### 例子 https://github.com/tockjyy/ServiceEngine/tree/master/Release
 ## 二.库组成
 ### 1.Boost/Asio库(1.60)(库过大,请自行安装编译)
