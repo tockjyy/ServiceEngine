@@ -1,0 +1,30 @@
+package client_gate;
+
+enum Protocol 
+{
+	LOGON = 12001;	//登陆
+	LOGIN = 12002;	//注册
+	BEAT = 12003;	//心跳
+}
+
+//登陆
+message LogonReq
+{
+	
+}
+
+message LogonRes
+{
+
+}
+
+//注册
+message LoginReq
+{
+	
+}
+
+message LoginRes
+{
+
+}

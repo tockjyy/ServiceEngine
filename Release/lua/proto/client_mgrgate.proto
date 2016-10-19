@@ -1,0 +1,15 @@
+enum Protocol 
+{
+	MALLOCGATE = 11001; //分配网关服务器
+}
+
+//分配网关服务器
+message MallocGateReq
+{
+	
+}
+
+message MallocGateRes
+{
+	required string ip = 1;
+}

@@ -1,0 +1,5 @@
+[SERVICE]
+LogFileNum = 1
+LogFile1 = POPOP
+
+Main = lua/mgrgate/Main.lua

@@ -1,0 +1,30 @@
+package gate_mgrgate;
+
+enum Protocol 
+{
+	BEAT = 21001;		//心跳
+	REGGATE = 21002;	//动态注册一个网关服务器
+}
+
+//心跳
+message BeatReq
+{
+	
+}
+
+message BeatRes
+{
+	required int32 pressure = 1;	//压力量
+}
+
+//动态注册一个网关服务器
+message RegGateReq
+{
+	
+}
+
+message RegGateRes
+{
+	required int32 ret = 1;
+	required int32 id = 2;	//分配的网关服务器id
+}

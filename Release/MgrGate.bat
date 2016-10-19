@@ -1,0 +1,2 @@
+ServiceEngine.exe MgrGateConfig
+pause
