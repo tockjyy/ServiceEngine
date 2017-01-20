@@ -264,9 +264,9 @@ bool InitLua()
 
 void LuaEngine::StartThread(uint16_t thread_num_)
 {
-	shared_ptr<boost::thread> thread
-	(new boost::thread(boost::bind(&LuaEngine::Run, this)));
-	monitor_thread_ = thread;
+	//shared_ptr<boost::thread> thread
+	//(new boost::thread(boost::bind(&LuaEngine::Run, this)));
+	//monitor_thread_ = thread;
 	for (int i(0); i < thread_num_; ++i)
 	{
 		//lua_State *tL = lua_newthread(gL);

@@ -33,9 +33,9 @@ public:
 	bool Start();
 private:
 	//网络任务队列
-	boost::asio::io_service io_service_;
+	//boost::asio::io_service io_service_;
 	//网络工作线程
-	boost::shared_ptr<boost::thread> work_thread_;
+	//boost::shared_ptr<boost::thread> work_thread_;
 	//异步监听列表
 	map<string, boost::shared_ptr<AsyncListen>> listen_list_;
 	//异步连接列表

@@ -34,7 +34,7 @@ public:
 			itr = nextitr;
 		}
 	}
-	TConnect* MallocSpace()
+	void MallocSpace()
 	{
 		SPIN_LOCK();
 		//如果空闲队列大小小于连接池总连接数的1/3 需要新分配1/3的空闲连接
@@ -54,7 +54,7 @@ public:
 		unordered_map<uint32_t, TConnect*>::iterator it = IdleList_.begin();
 		TConnect* session = it->second;
 		IdleList_.erase(it);
-		return session;
+		curCont = session;
 	}
 
 	void AddBusy(TConnect * session)
@@ -99,13 +99,25 @@ public:
 		string ip = it->second->GetRemoveIp();
 		return move(ip);
 	}
-	virtual ~ConnectPool(){}
+	virtual ~ConnectPool()
+	{
+		for each (auto it in BusyList_)
+		{
+			delete it.second;
+		}
+		for each (auto it in IdleList_)
+		{
+			delete it.second;
+		}
+		delete curCont;
+	}
 protected:
 	uint32_t count_; //当前连接池大小
 	uint32_t autovalue_; //连接号--自增长分配
 
 	unordered_map<uint32_t, TConnect*> BusyList_; //繁忙队列
 	unordered_map<uint32_t, TConnect*> IdleList_; //空闲队列
+	TConnect* curCont;//当前连接
 
 	boost::asio::io_service* pio_; //任务队列指针
 	string name_;

@@ -1,5 +1,6 @@
 #include "TaskQueue.h"
 #include "NetWorkMgr.h"
+#include "lua-global.h"
 
 
 TaskQueue::TaskQueue()
@@ -22,11 +23,12 @@ bool TaskQueue::CreateNewRecvTask(const void* pbuf
 	temp->connectid_ = connectid;
 	temp->svrName_ = svrName;
 	temp->buffer.assign((char*)pbuf, size);
-	{
-		AUTO_LOCK lock(read_mutex);
-		recv_task_list_.push(temp);
-	}
-	cv_.notify_one();
+	GET_INSTANCE(LuaEngine)->MallocTask(temp);
+// 	{
+// 		AUTO_LOCK lock(read_mutex);
+// 		recv_task_list_.push(temp);
+// 	}
+// 	cv_.notify_one();
 	return true;
 }
 

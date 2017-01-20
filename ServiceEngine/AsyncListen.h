@@ -18,7 +18,8 @@ public:
 	}
 	void Start_Accept()
 	{
-		AsyncSession* session = MallocSpace();
+		MallocSpace();
+		AsyncSession* session = curCont;
 		acceptor_.async_accept(session->socket_,
 			bind(&this_type::Handle_Accept, this,
 				boost::asio::placeholders::error, session));
