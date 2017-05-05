@@ -3,7 +3,6 @@ package main
 import (
 	"network/networkmgr"
 )
-
 //initial listener and run
 func main() {
 	//netmgr := networkmgr.NewNetWorkMgr()
