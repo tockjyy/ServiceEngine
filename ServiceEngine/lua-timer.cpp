@@ -38,18 +38,24 @@ void Lua_Timer::TimerHandle()
 // 	auto L = state_list_.top();
 // 	state_list_.pop();
 // 	lock.unlock();
+// 	lua_State *L;
+// 	auto id = GetCurrentThreadId();
+// 	auto itr = state_list_.find(id);
+// 	if (itr == state_list_.end())
+// 	{
+// 		L = lua_newthread(gL);
+// 		state_list_.insert(pair<DWORD, lua_State*>(id, L));
+// 	}
+// 	else
+// 	{
+// 		L = itr->second;
+// 	}
+	auto instance_ = GET_INSTANCE(LuaEngine);
+	instance_->lock.lock();
 	lua_State *L;
-	auto id = GetCurrentThreadId();
-	auto itr = state_list_.find(id);
-	if (itr == state_list_.end())
-	{
-		L = lua_newthread(gL);
-		state_list_.insert(pair<DWORD, lua_State*>(id, L));
-	}
-	else
-	{
-		L = itr->second;
-	}
+	L = instance_->state_list.front();
+	instance_->state_list.pop();
+	instance_->lock.unlock();
 	lua_getglobal(L, func_.c_str());
 	lua_pushinteger(L, index_);
 	if (lua_pcall(L, 1, LUA_MULTRET, 0) != 0) {
@@ -65,9 +71,9 @@ void Lua_Timer::TimerHandle()
 		}
 	}
 	//lua_pcall(L, 1, 1, 0);
-// 	lock.lock();
-// 	state_list_.push(L);
-// 	lock.unlock();
+	instance_->lock.lock();
+	instance_->state_list.push(L);
+	instance_->lock.unlock();
 }
 void Lua_Timer::Destory()
 {

@@ -10,7 +10,7 @@ lua_State* gL;
 
 //boost::detail::spinlock lock;
 
-map<DWORD, lua_State*> state_list_;
+//map<DWORD, lua_State*> state_list_;
 
 int pcall_callback_err_fun(lua_State* L)
 {
@@ -267,19 +267,25 @@ void LuaEngine::StartThread(uint16_t thread_num_)
 	//shared_ptr<boost::thread> thread
 	//(new boost::thread(boost::bind(&LuaEngine::Run, this)));
 	//monitor_thread_ = thread;
+	StartTimer(&io_service_, 1000);
 	for (int i(0); i < thread_num_; ++i)
 	{
+		lua_State *L;
+		L = lua_newthread(gL);
+		state_list.push(L);
 		//lua_State *tL = lua_newthread(gL);
 		//state_list_.push(tL);
-		boost::shared_ptr<boost::thread> _thread
-		(new boost::thread(boost::bind(&LuaEngine::WorkRun, this)));
+		boost::thread _thread(boost::bind(&LuaEngine::WorkRun, this));
 		work_thread_.push_back(_thread);
 	}
 }
 
 void LuaEngine::WorkRun()
 {
+	auto id = GetCurrentThreadId();
+	cout << "thread :" << id << " is open" << endl;
 	io_service_.run();
+	cout << "thread :" << id << " is close" << endl;
 }
 
 void LuaEngine::Run()
@@ -304,22 +310,27 @@ void LuaEngine::MallocTask(shared_ptr<Task> task)
 {
 	try
 	{
-// 		lock.lock();
+//		lock.lock();
 // 		auto L = state_list_.top();
 // 		state_list_.pop();
 // 		lock.unlock();
+		lock.lock();
 		lua_State *L;
+		L = state_list.front();
+		state_list.pop();
 		auto id = GetCurrentThreadId();
-		auto itr = state_list_.find(id);
-		if (itr == state_list_.end())
-		{
-			L = lua_newthread(gL);
-			state_list_.insert(pair<DWORD, lua_State*>(id, L));
-		}
-		else
-		{
-			L = itr->second;
-		}
+		cout << "count: " << work_thread_.size() <<" "<< id << endl;
+		lock.unlock();
+// 		auto itr = state_list_.find(id);
+// 		if (itr == state_list_.end())
+// 		{
+// 			L = lua_newthread(gL);
+// 			state_list_.insert(pair<DWORD, lua_State*>(id, L));
+// 		}
+// 		else
+// 		{
+// 			L = itr->second;
+// 		}
 		lua_getglobal(L, "MessageHandle");
 		lua_pushstring(L, task->svrName_.c_str());
 		lua_pushinteger(L, task->connectid_);
@@ -329,9 +340,9 @@ void LuaEngine::MallocTask(shared_ptr<Task> task)
 			std::cout << "[LUA ERROR]: " << endl << lua_tostring(L, -1) << endl;
 		}
 		//lua_pcall(L, 4, 0, 0);
-// 		lock.lock();
-// 		state_list_.push(L);
-// 		lock.unlock();
+		lock.lock();
+		state_list.push(L);
+		lock.unlock();
 	}
 	catch (...)
 	{
