@@ -3,7 +3,7 @@
 这是本人在工作经验尚差时，于工作需要在进行语言选型时的尝试产物，仅有参考价值，其中的手法与库引用都显得稚嫩，之后的话都是我1年前的理解，估计下次有需要我才会整理。
 理论上可作为任何Cpu密集型服务器的底层框架,网络底层由C++编写开发时可不变,服务器逻辑全部由Lua编写,节约开发成本与维护难度,库选型都是跨平台的库,所以只上传了VS2015的工程,linux编译未整理，不过很简单，没什么库差异
 
-[随笔](https://github.com/tockjyy/ServiceEngine/wiki/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%9A%8F%E7%AC%94)
+[详细设计笔记](https://github.com/tockjyy/ServiceEngine/wiki/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%9A%8F%E7%AC%94)
 ### 例子 https://github.com/tockjyy/ServiceEngine/tree/master/Release
 ## 二.库组成
 1.Boost/Asio库(1.60)(库过大,请自行安装编译)
